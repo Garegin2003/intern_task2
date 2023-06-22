@@ -19,4 +19,50 @@ function getWeatherForecast(callback) {
   
     xhr.open('GET', url);
     xhr.send();
+}
+
+function searchHandler(e) {
+    e.preventDefault();
+    getWeatherForecast(function (data) {
+      if (!data) {
+        container.innerHTML = '<p class="not">not a country<p/>';
+        return;
+      }
+      console.log(data);
+      const dataList = data.list.map((e) => e);
+      container.innerHTML = '';
+      dataList.forEach((e) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('item');
+  
+        const img = document.createElement('img');
+        img.src = `http://openweathermap.org/img/w/${e.weather[0].icon}.png`;
+        itemDiv.appendChild(img);
+  
+        const tempH1 = document.createElement('h1');
+        tempH1.textContent = `${e.main.temp.toFixed(1)}°C`;
+        itemDiv.appendChild(tempH1);
+  
+        const dateTimeP = document.createElement('p');
+        dateTimeP.textContent = e.dt_txt;
+        itemDiv.appendChild(dateTimeP);
+  
+        const minTempSpan = document.createElement('span');
+        minTempSpan.textContent = `Minimal ${e.main.temp_min.toFixed()} °C`;
+        itemDiv.appendChild(minTempSpan);
+  
+        const maxTempSpan = document.createElement('span');
+        maxTempSpan.textContent = `Maximal ${e.main.temp_max.toFixed(1)} °C`;
+        itemDiv.appendChild(maxTempSpan);
+  
+        const windArrowH1 = document.createElement('h1');
+        windArrowH1.style.transform = `rotate(${e.wind.deg}deg)`;
+        windArrowH1.textContent = '\u2191';
+        itemDiv.appendChild(windArrowH1);
+  
+        container.appendChild(itemDiv);
+      });
+    });
   }
+  
+  search.addEventListener('click', searchHandler, false);
