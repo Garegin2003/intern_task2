@@ -65,4 +65,4 @@ function searchHandler(e) {
     });
   }
   
-  form.addEventListener('submit', searchHandler, false);
+  form.addEventListener('submit', searchHandler);
