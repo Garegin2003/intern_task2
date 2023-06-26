@@ -1,0 +1,62 @@
+@import './variable.scss';
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    row-gap: 100px;
+
+    &__items {
+        margin: 0 auto;
+        display: flex;
+        width: 1200px;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    &__item {
+        box-shadow: 8px 5px 5px $shadow;
+        background-color: $itembackground;
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50px;
+
+        &--empty {
+            color: red;
+            font-size: 36px;
+            background: transparent;
+        }
+    }
+
+    .city {
+        width: 249px;
+        border-radius: 50px;
+        height: 50px;
+        border: 1px $borderColor solid;
+        padding: 25px;
+        background-color: $backgroundForm;
+    }
+
+    .form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: 50px;
+
+    }
+
+    .search {
+        width: 120px;
+        height: 50px;
+        border-radius: 50px;
+        background: $backgroundForm;
+        border: 1px $borderColor solid;
+    }
+}
